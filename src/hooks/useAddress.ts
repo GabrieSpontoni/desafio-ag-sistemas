@@ -48,6 +48,12 @@ export function useAddress() {
       return;
     }
 
+    const addressIsOnState = address?.cep === cep;
+    if (addressIsOnState) {
+      setAddress(address);
+      return;
+    }
+
     const existingAddress = savedAddresses.find((addr) => addr.cep === cep);
     if (existingAddress) {
       setAddress(existingAddress);
