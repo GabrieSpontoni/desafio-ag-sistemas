@@ -7,17 +7,29 @@ interface AddressCardProps {
 
 export function AddressCard({ address, onSave }: AddressCardProps) {
   return (
-    <div className="mt-6 p-4 border rounded w-80">
-      <h2 className="text-lg font-bold">Endereço:</h2>
-      <p><strong>CEP:</strong> {address.cep}</p>
-      <p><strong>Logradouro:</strong> {address.logradouro}</p>
-      <p><strong>Bairro:</strong> {address.bairro}</p>
-      <p><strong>Cidade:</strong> {address.localidade} - {address.uf}</p>
+    <div className="mt-6 p-6 border border-gray-200 rounded-lg shadow-md bg-white w-full">
+      <h2 className="text-xl font-semibold text-gray-700">
+        Endereço Encontrado:
+      </h2>
+      <div className="mt-3 text-gray-600">
+        <p>
+          <strong>CEP:</strong> {address.cep}
+        </p>
+        <p>
+          <strong>Logradouro:</strong> {address.logradouro}
+        </p>
+        <p>
+          <strong>Bairro:</strong> {address.bairro}
+        </p>
+        <p>
+          <strong>Cidade:</strong> {address.localidade} - {address.uf}
+        </p>
+      </div>
       <button
         onClick={onSave}
-        className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 cursor-pointer"
+        className="cursor-pointer mt-4 w-full bg-green-600 text-white font-semibold h-12 px-6 rounded-lg transition hover:bg-green-700 active:scale-95"
       >
-        Salvar
+        Salvar Endereço
       </button>
     </div>
   );
