@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface Address {
   cep: string;
@@ -18,6 +18,14 @@ export default function Home() {
   const [cep, setCep] = useState<string>("");
   const [address, setAddress] = useState<Address | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [savedAddresses, setSavedAddresses] = useState<Address[]>([]);
+
+  useEffect(() => {
+    const storedAddresses = localStorage.getItem("savedAddresses");
+    if (storedAddresses) {
+      setSavedAddresses(JSON.parse(storedAddresses));
+    }
+  }, []);
 
   const fetchAddress = async () => {
     setError(null);
@@ -42,6 +50,14 @@ export default function Home() {
     } catch {
       setError("Erro ao buscar o CEP.");
     }
+  };
+
+  const saveAddress = () => {
+    if (!address) return;
+
+    const updatedAddresses = [...savedAddresses, address];
+    setSavedAddresses(updatedAddresses);
+    localStorage.setItem("savedAddresses", JSON.stringify(updatedAddresses));
   };
 
   return (
@@ -81,6 +97,36 @@ export default function Home() {
           <p>
             <strong>Estado:</strong> {address.uf}
           </p>
+          <button
+            onClick={saveAddress}
+            className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+          >
+            Salvar
+          </button>
+        </div>
+      )}
+
+      {savedAddresses.length > 0 && (
+        <div className="mt-8 w-80">
+          <h2 className="text-lg font-bold mb-4">Endereços Salvos:</h2>
+          <ul className="border rounded p-4">
+            {savedAddresses.map((addr, index) => (
+              <li key={index} className="mb-2 border-b pb-2 last:border-b-0">
+                <p>
+                  <strong>CEP:</strong> {addr.cep}
+                </p>
+                <p>
+                  <strong>Logradouro:</strong> {addr.logradouro}
+                </p>
+                <p>
+                  <strong>Bairro:</strong> {addr.bairro}
+                </p>
+                <p>
+                  <strong>Cidade:</strong> {addr.localidade} - {addr.uf}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
