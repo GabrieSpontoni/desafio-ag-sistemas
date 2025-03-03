@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📍 Consulta de Endereço via CEP
 
-## Getting Started
+Este é um projeto desenvolvido com **Next.js 14**, **TypeScript** e **TailwindCSS**, que permite aos usuários consultar endereços via **API do ViaCEP**, armazená-los localmente e visualizá-los de forma organizada.
 
-First, run the development server:
+## 🚀 Funcionalidades
 
+✅ Consulta de endereço por **CEP** utilizando a API do [ViaCEP](https://viacep.com.br/).  
+✅ **Máscara automática** no campo de CEP (`00000-000`).  
+✅ Armazena os endereços no **localStorage**, permitindo **persistência** dos dados.  
+✅ **Remoção de endereços** salvos.  
+✅ Interface responsiva e estilizada com **TailwindCSS**.  
+✅ Código modularizado com **componentização** e **hooks personalizados**.  
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Next.js 15** → Framework para aplicações React.  
+- **TypeScript** → Tipagem estática para maior segurança no código.  
+- **TailwindCSS** → Estilização moderna e responsiva.  
+- **LocalStorage** → Persistência dos endereços salvos no navegador.  
+
+---
+
+## 📦 Como rodar o projeto?
+
+### **1️⃣ Clonar o repositório**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/GabrieSpontoni/desafio-ag-sistemas.git
+cd seu-repositorio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### **2️⃣ Instalar as dependências**
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **3️⃣ Rodar o servidor local**
+```bash
+npm run dev
+```
+Acesse **[http://localhost:3000](http://localhost:3000)** no navegador.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📂 Estrutura principal do Projeto
 
-To learn more about Next.js, take a look at the following resources:
+```
+📦 src
+ ┣ 📂 app
+ ┃ ┗ 📜 page.tsx         # Página principal
+ ┣ 📂 components
+ ┃ ┣ 📜 CepInput.tsx     # Componente de input de CEP
+ ┃ ┣ 📜 AddressCard.tsx  # Componente de exibição do endereço consultado
+ ┃ ┗ 📜 SavedAddresses.tsx # Lista de endereços salvos
+ ┣ 📂 hooks
+ ┃ ┗ 📜 useAddress.ts    # Hook para gerenciar lógica de endereços
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🏗️ Decisões Técnicas
 
-## Deploy on Vercel
+- **Separação de responsabilidades**: O projeto foi dividido em **componentes reutilizáveis** e um **hook personalizado (`useAddress`)** para centralizar a lógica.  
+- **Uso de `localStorage`**: Armazenar os endereços localmente para que o usuário não perca os dados ao atualizar a página.  
+- **Máscara no input de CEP**: Para evitar erros na digitação e manter um padrão no formato de `00000-000`.  
+- **Validação e tratamento de erros**: Caso o usuário insira um CEP inválido ou que não exista na API do ViaCEP, uma mensagem de erro será exibida.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🧠 Uso de Inteligência Artificial
+
+Foi utilizado o **ChatGPT** para **otimizar a estrutura do código**, sugerir boas práticas e melhorar a responsividade do layout.  
+Nenhuma parte do código foi gerada e utilizada diretamente sem revisão, todos os trechos foram testados e ajustados conforme as necessidades do projeto.  
+
+
+
